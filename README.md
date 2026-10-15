@@ -74,16 +74,16 @@ git clone https://github.com/mejbaurbahar/awesome-qa-agent-skills && cd awesome-
 | Category | Skills | `--category` |
 |---|---:|---|
 | **🧪 QA & Software Testing** | | |
-| &nbsp;&nbsp;[🗺️ Strategy, Planning & Metrics](#-strategy-planning--metrics) | 15 | `strategy` |
+| &nbsp;&nbsp;[🗺️ Strategy, Planning & Metrics](#️-strategy-planning--metrics) | 15 | `strategy` |
 | &nbsp;&nbsp;[✅ Functional & Acceptance](#-functional--acceptance) | 9 | `functional` |
 | &nbsp;&nbsp;[🔬 Code-Level & White-Box](#-code-level--white-box) | 10 | `code-level` |
 | &nbsp;&nbsp;[🤖 Automation & CI](#-automation--ci) | 7 | `automation` |
-| &nbsp;&nbsp;[🖥️ Web, UI & UX Testing](#-web-ui--ux-testing) | 9 | `web` |
+| &nbsp;&nbsp;[🖥️ Web, UI & UX Testing](#️-web-ui--ux-testing) | 9 | `web` |
 | &nbsp;&nbsp;[🔌 API, Backend & Messaging](#-api-backend--messaging) | 6 | `api-backend` |
-| &nbsp;&nbsp;[🗄️ Data & Databases](#-data--databases) | 4 | `data` |
+| &nbsp;&nbsp;[🗄️ Data & Databases](#️-data--databases) | 4 | `data` |
 | &nbsp;&nbsp;[⚡ Performance & Reliability](#-performance--reliability) | 9 | `non-functional` |
 | &nbsp;&nbsp;[📡 Operations & Production](#-operations--production) | 3 | `operations` |
-| &nbsp;&nbsp;[🛡️ Security & Privacy](#-security--privacy) | 10 | `security` |
+| &nbsp;&nbsp;[🛡️ Security & Privacy](#️-security--privacy) | 10 | `security` |
 | &nbsp;&nbsp;[📋 Compliance](#-compliance) | 1 | `compliance` |
 | &nbsp;&nbsp;[🧠 AI, ML & LLM Testing](#-ai-ml--llm-testing) | 8 | `ai` |
 | &nbsp;&nbsp;[📱 Platforms](#-platforms) | 7 | `platform` |

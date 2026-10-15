@@ -43,7 +43,7 @@ def description(fm):
 
 def anchor(title):
     # GitHub drops emoji/punctuation but keeps the space after a leading emoji, so the slug starts with '-'.
-    return re.sub(r"[^a-z0-9 -]", "", title.lower()).replace(" ", "-")
+    return re.sub(r"[^a-z0-9 \ufe0f-]", "", title.lower()).replace(" ", "-")
 
 
 def write_lists(folder, mapping):
