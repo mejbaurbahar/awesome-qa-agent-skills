@@ -125,4 +125,4 @@ fi
 
 say ""
 say "done: $installed installed, $skipped skipped (existing skills were left untouched)."
-say "Restart Claude Code / Antigravity to load them. Uninstall: $0 --uninstall"
+say "Restart Claude Code / Antigravity to load them. Uninstall: bash \"$REPO/install.sh\" --uninstall"
