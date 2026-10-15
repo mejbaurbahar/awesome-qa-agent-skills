@@ -42,6 +42,33 @@ def rename_frontmatter(skill_md, new_name):
     skill_md.write_text(text, encoding="utf-8")
 
 
+MAX_DESC = 1024  # Agent Skills spec limit; longer descriptions get truncated or rejected by agents
+
+
+def fit_description(skill_md):
+    """Shorten an over-long description at a sentence boundary. Returns True if changed."""
+    text = skill_md.read_text(encoding="utf-8")
+    end = text.find("\n---", 3)
+    fm, rest = text[:end], text[end:]
+    m = re.search(r"(?m)^description:[ \t]*([>|]-?)?[ \t]*(.*)\n((?:[ \t]+.*\n?)*)", fm + "\n")
+    if not m:
+        return False
+    if m.group(1):  # folded / literal block
+        value = " ".join(l.strip() for l in m.group(3).splitlines() if l.strip())
+    else:
+        value = m.group(2).strip()
+        if value[:1] in "\"'":
+            value = value[1:-1].replace('\\"', '"') if value[0] == '"' else value[1:-1].replace("''", "'")
+    if len(value) <= MAX_DESC:
+        return False
+    cut = value[:MAX_DESC - 4]
+    stop = max(cut.rfind(". "), cut.rfind("; "))
+    short = cut[:stop + 1] if stop > MAX_DESC // 2 else cut.rsplit(" ", 1)[0] + "..."
+    new_fm = fm[:m.start()] + "description: " + json.dumps(short, ensure_ascii=False) + "\n" + fm[m.end():]
+    skill_md.write_text(new_fm.rstrip("\n") + rest, encoding="utf-8")
+    return True
+
+
 def copy_skill(src, dest):
     if dest.exists():
         shutil.rmtree(dest)
@@ -58,7 +85,7 @@ def main():
 
     owner = {}  # skill name -> source id, to catch collisions across sources
     for sid, entry in lock.items():
-        if sid != only:
+        if only and sid != only:  # partial sync: other sources keep their current skills
             for name in entry.get("skills", []):
                 owner[name] = sid
 
@@ -71,7 +98,7 @@ def main():
             base = checkout / src["path"] if src["path"] else checkout
             for old in lock.get(src["id"], {}).get("skills", []):
                 shutil.rmtree(SKILLS / old, ignore_errors=True)
-            names = []
+            names, changes = [], {}
             for rel in list_skills(base, src["skills"]):
                 folder = (base / rel).resolve()
                 if not (folder / "SKILL.md").is_file():
@@ -83,6 +110,9 @@ def main():
                 copy_skill(folder, SKILLS / name)
                 if name != Path(rel).name or rel == ".":
                     rename_frontmatter(SKILLS / name / "SKILL.md", name)
+                    changes.setdefault(name, []).append(f"renamed from `{Path(rel).name if rel != '.' else 'repo root'}`")
+                if fit_description(SKILLS / name / "SKILL.md"):
+                    changes.setdefault(name, []).append(f"description shortened to the {MAX_DESC}-character spec limit")
                 names.append(name)
             for lic in ("LICENSE", "LICENSE.md", "LICENSE.txt", "NOTICE", "NOTICE.md"):
                 if (checkout / lic).is_file():
@@ -90,6 +120,8 @@ def main():
                     shutil.copy(checkout / lic, LICENSES / f"{src['id']}.{suffix}")
             lock[src["id"]] = {"repo": src["repo"], "commit": sha, "license": src["license"],
                                "pack": src["pack"], "skills": sorted(names)}
+            if changes:
+                lock[src["id"]]["changes"] = dict(sorted(changes.items()))
             print(f"{src['id']:<34} {len(names):>3} skills  @ {sha[:10]}")
 
     lock_path.write_text(json.dumps(dict(sorted(lock.items())), indent=2) + "\n")

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320" role="img" aria-label="Awesome QA Agent Skills — skills for testers, QA engineers and product managers in Claude Code and Antigravity">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#34d399"/>
+      <stop offset="1" stop-color="#60a5fa"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#ffffff" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="320" rx="24" fill="url(#bg)"/>
+  <rect width="1280" height="320" rx="24" fill="url(#grid)"/>
+  <g font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <text x="80" y="118" fill="#94a3b8" font-size="22" font-weight="600" letter-spacing="4">AGENT SKILLS FOR QUALITY</text>
+    <text x="80" y="190" fill="#f8fafc" font-size="68" font-weight="800">Awesome QA Agent Skills</text>
+    <rect x="80" y="214" width="180" height="6" rx="3" fill="url(#accent)"/>
+    <text x="80" y="268" fill="#cbd5e1" font-size="26">Testing · Automation · Security · AI/LLM · Product Management</text>
+  </g>
+  <g transform="translate(1010 70)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M60 0h60M72 0v56L24 150a20 20 0 0 0 18 30h96a20 20 0 0 0 18-30L108 56V0" stroke="#e2e8f0" stroke-width="8"/>
+    <path d="M44 120h92l20 32a8 8 0 0 1-7 12H31a8 8 0 0 1-7-12z" fill="url(#accent)" stroke="none" opacity="0.9"/>
+    <path d="M66 140l14 14 28-28" stroke="#0f172a" stroke-width="9"/>
+  </g>
+</svg>

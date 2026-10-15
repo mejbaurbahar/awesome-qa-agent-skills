@@ -1,9 +1,13 @@
 acceptance-testing
 bdd-gherkin-testing
+bug-reproduction
 email-notification-testing
 exploratory-testing
 functional-testing
+intended-vs-implemented
 manual-testing
 regression-testing
 smoke-sanity-testing
 system-testing
+test-scenarios
+verification-before-completion

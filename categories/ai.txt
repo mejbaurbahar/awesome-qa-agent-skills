@@ -1,5 +1,8 @@
+agentic-browser-testing
 ai-agent-evaluation
+ai-bug-triage
 ai-ml-testing
+ai-test-generation
 chatbot-voice-agent-testing
 llm-security-audit
 llm-testing

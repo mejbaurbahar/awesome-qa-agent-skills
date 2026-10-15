@@ -17,7 +17,9 @@ LEAK_RE = re.compile(
     r"(/Users/[A-Za-z0-9._-]+/|/home/[a-z0-9._-]+/|~/qa-agent|gh[opsu]_[A-Za-z0-9]{20,}|"
     r"sk-ant-[A-Za-z0-9-]{10,}|AKIA[0-9A-Z]{16}|[A-Za-z0-9._%+-]+@gmail\.com)"
 )
-LEAK_ALLOW = re.compile(r"(you|user|example|name|your)@gmail\.com|/Users/(you|me|name|username|USER)/", re.I)
+LEAK_ALLOW = re.compile(
+    r"^(you|user|example|name|your|test|testuser|demo|john|jane|foo|someone)@gmail\.com$|"
+    r"^/Users/(you|me|name|username|USER)/$|^/home/(user|ubuntu|runner|node|app|wiremock|pwuser|circleci)/$", re.I)
 
 
 def frontmatter(text):
@@ -48,7 +50,7 @@ def field(fm, key):
         return None
     v = m.group(1).strip()
     if v in (">", "|", ">-", "|-"):
-        block = re.search(rf"(?ms)^{key}:\s*[>|]-?\n((?:[ \t]+.*\n?)+)", fm)
+        block = re.search(rf"(?m)^{key}:[ \t]*[>|]-?[ \t]*\n((?:[ \t]+.*\n?)+)", fm)
         return " ".join(l.strip() for l in block.group(1).splitlines()) if block else ""
     return v.strip("\"'")
 

@@ -6,5 +6,7 @@ mutation-testing
 property-based-testing
 snapshot-golden-testing
 static-analysis-testing
+systematic-debugging
 tdd-workflow
+test-driven-development
 unit-testing

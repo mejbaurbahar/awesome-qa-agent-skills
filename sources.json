@@ -17,8 +17,12 @@
       "pack": "qa",
       "mode": "vendor",
       "path": "skills",
-      "skills": ["security-audit"],
-      "rename": {"security-audit": "cloudflare-security-audit"}
+      "skills": [
+        "security-audit"
+      ],
+      "rename": {
+        "security-audit": "cloudflare-security-audit"
+      }
     },
     {
       "id": "anthropic-knowledge-work-plugins",
@@ -51,7 +55,14 @@
       "pack": "web",
       "mode": "vendor",
       "path": "skills",
-      "skills": ["web-quality-audit", "core-web-vitals", "performance", "accessibility", "seo", "best-practices"]
+      "skills": [
+        "web-quality-audit",
+        "core-web-vitals",
+        "performance",
+        "accessibility",
+        "seo",
+        "best-practices"
+      ]
     },
     {
       "id": "openseo",
@@ -88,8 +99,12 @@
       "pack": "pm",
       "mode": "vendor",
       "path": "",
-      "skills": ["."],
-      "rename": {".": "humanizer"}
+      "skills": [
+        "."
+      ],
+      "rename": {
+        ".": "humanizer"
+      }
     },
     {
       "id": "skills-for-antigravity",
@@ -98,7 +113,125 @@
       "pack": "qa",
       "mode": "vendor",
       "path": "skills",
-      "skills": ["prompt-injection-defense"]
+      "skills": [
+        "prompt-injection-defense"
+      ]
+    },
+    {
+      "id": "microsoft-playwright-cli",
+      "repo": "https://github.com/microsoft/playwright-cli",
+      "license": "Apache-2.0",
+      "pack": "qa",
+      "mode": "vendor",
+      "path": "skills",
+      "skills": [
+        "playwright-cli"
+      ],
+      "note": "Official Microsoft Playwright CLI skill."
+    },
+    {
+      "id": "playwright-skill",
+      "repo": "https://github.com/lackeyjb/playwright-skill",
+      "license": "MIT",
+      "pack": "qa",
+      "mode": "vendor",
+      "path": "skills",
+      "skills": [
+        "playwright-skill"
+      ],
+      "note": "Run `npm run setup` inside the skill folder once to install Playwright + Chromium."
+    },
+    {
+      "id": "playwright-best-practices",
+      "repo": "https://github.com/currents-dev/playwright-best-practices-skill",
+      "license": "MIT",
+      "pack": "qa",
+      "mode": "vendor",
+      "path": "",
+      "skills": [
+        "playwright-best-practices"
+      ]
+    },
+    {
+      "id": "superpowers",
+      "repo": "https://github.com/obra/superpowers",
+      "license": "MIT",
+      "pack": "qa",
+      "mode": "vendor",
+      "path": "skills",
+      "skills": [
+        "test-driven-development",
+        "systematic-debugging",
+        "verification-before-completion"
+      ]
+    },
+    {
+      "id": "qa-skills-petrkindlmann",
+      "repo": "https://github.com/petrkindlmann/qa-skills",
+      "license": "MIT",
+      "pack": "qa",
+      "mode": "vendor",
+      "path": "skills",
+      "skills": [
+        "qa-project-context",
+        "risk-based-testing",
+        "bug-reproduction",
+        "ai-bug-triage",
+        "selector-drift-recovery",
+        "service-virtualization",
+        "shift-left-testing",
+        "ai-test-generation",
+        "agentic-browser-testing",
+        "test-suite-curation",
+        "cypress-automation",
+        "quality-postmortem",
+        "test-case-management",
+        "test-migration",
+        "playwright-automation"
+      ]
+    },
+    {
+      "id": "pm-skills-phuryn",
+      "repo": "https://github.com/phuryn/pm-skills",
+      "license": "MIT",
+      "pack": "pm",
+      "mode": "vendor",
+      "path": "",
+      "skills": [
+        "pm-execution/skills/create-prd",
+        "pm-execution/skills/user-stories",
+        "pm-execution/skills/job-stories",
+        "pm-execution/skills/test-scenarios",
+        "pm-ai-shipping/skills/intended-vs-implemented",
+        "pm-execution/skills/dummy-dataset",
+        "pm-execution/skills/pre-mortem",
+        "pm-execution/skills/prioritization-frameworks",
+        "pm-product-discovery/skills/prioritize-features",
+        "pm-execution/skills/release-notes",
+        "pm-execution/skills/retro",
+        "pm-execution/skills/sprint-plan",
+        "pm-execution/skills/outcome-roadmap",
+        "pm-marketing-growth/skills/north-star-metric",
+        "pm-product-discovery/skills/metrics-dashboard",
+        "pm-data-analytics/skills/ab-test-analysis",
+        "pm-data-analytics/skills/cohort-analysis",
+        "pm-data-analytics/skills/sql-queries",
+        "pm-market-research/skills/user-personas",
+        "pm-product-discovery/skills/interview-script",
+        "pm-product-discovery/skills/summarize-interview",
+        "pm-execution/skills/summarize-meeting",
+        "pm-product-discovery/skills/analyze-feature-requests",
+        "pm-execution/skills/stakeholder-map",
+        "pm-product-discovery/skills/opportunity-solution-tree",
+        "pm-execution/skills/strategy-red-team",
+        "pm-product-strategy/skills/product-vision",
+        "pm-product-strategy/skills/product-strategy",
+        "pm-market-research/skills/market-sizing",
+        "pm-product-strategy/skills/swot-analysis",
+        "pm-go-to-market/skills/competitive-battlecard",
+        "pm-product-discovery/skills/identify-assumptions-existing",
+        "pm-product-discovery/skills/brainstorm-experiments-existing"
+      ]
     },
     {
       "id": "product-manager-skills",

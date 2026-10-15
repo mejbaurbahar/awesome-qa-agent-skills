@@ -1,9 +1,16 @@
+analyze-feature-requests
+brainstorm-experiments-existing
 competitive-brief
 grill-me
 grill-with-docs
+identify-assumptions-existing
+interview-script
+opportunity-solution-tree
 product-brainstorming
 research-synthesis
+summarize-interview
 synthesize-research
 to-questionnaire
+user-personas
 user-research
 wayfinder

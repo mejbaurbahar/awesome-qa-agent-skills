@@ -1,30 +1,167 @@
 {
   "_comment": "Category for every skill. A skill's own `metadata.category` wins; `assign` covers skills that have none (vendored files stay unmodified). build_catalog.py fails if any skill ends up uncategorized.",
   "groups": [
-    {"id": "qa", "title": "🧪 QA & Software Testing"},
-    {"id": "web", "title": "🌐 Web Quality, SEO & AI Search"},
-    {"id": "pm", "title": "🧭 Product Management"}
+    {
+      "id": "qa",
+      "title": "🧪 QA & Software Testing"
+    },
+    {
+      "id": "web",
+      "title": "🌐 Web Quality, SEO & AI Search"
+    },
+    {
+      "id": "pm",
+      "title": "🧭 Product Management"
+    }
   ],
   "categories": [
-    {"id": "strategy", "group": "qa", "emoji": "🗺️", "title": "Strategy, Planning & Metrics", "blurb": "Decide what to test, plan it, report on it."},
-    {"id": "functional", "group": "qa", "emoji": "✅", "title": "Functional & Acceptance", "blurb": "Black-box, exploratory, regression and release-gate testing."},
-    {"id": "code-level", "group": "qa", "emoji": "🔬", "title": "Code-Level & White-Box", "blurb": "Unit, integration, property, fuzz, mutation and TDD."},
-    {"id": "automation", "group": "qa", "emoji": "🤖", "title": "Automation & CI", "blurb": "Frameworks, environments, flaky tests, coverage and pipelines."},
-    {"id": "web", "group": "qa", "emoji": "🖥️", "title": "Web, UI & UX Testing", "blurb": "Browsers, E2E, visual, accessibility, i18n, SEO and PWAs."},
-    {"id": "api-backend", "group": "qa", "emoji": "🔌", "title": "API, Backend & Messaging", "blurb": "REST, GraphQL, real-time, contracts, events and microservices."},
-    {"id": "data", "group": "qa", "emoji": "🗄️", "title": "Data & Databases", "blurb": "Databases, ETL, migrations and test data."},
-    {"id": "non-functional", "group": "qa", "emoji": "⚡", "title": "Performance & Reliability", "blurb": "Load, scalability, chaos, recovery and compatibility."},
-    {"id": "operations", "group": "qa", "emoji": "📡", "title": "Operations & Production", "blurb": "Observability, infrastructure and shift-right monitoring."},
-    {"id": "security", "group": "qa", "emoji": "🛡️", "title": "Security & Privacy", "blurb": "Defensive security testing, auth, supply chain and IaC."},
-    {"id": "compliance", "group": "qa", "emoji": "📋", "title": "Compliance", "blurb": "GDPR, HIPAA, PCI, SOC 2, audit evidence."},
-    {"id": "ai", "group": "qa", "emoji": "🧠", "title": "AI, ML & LLM Testing", "blurb": "Models, LLM apps, RAG, agents, chatbots, MCP and prompt injection."},
-    {"id": "platform", "group": "qa", "emoji": "📱", "title": "Platforms", "blurb": "Mobile, desktop, CLI, IoT, games, blockchain and serverless."},
-    {"id": "domain", "group": "qa", "emoji": "💳", "title": "Domain-Specific", "blurb": "Payments, email, analytics and experimentation."},
-    {"id": "web-quality", "group": "web", "emoji": "🚀", "title": "Web Quality & Core Web Vitals", "blurb": "Lighthouse-style audits: performance, accessibility, best practices."},
-    {"id": "seo-geo", "group": "web", "emoji": "🔎", "title": "SEO & AI Search Visibility", "blurb": "Keywords, competitors, local SEO, and how ChatGPT/Gemini cite you (GEO/AEO)."},
-    {"id": "pm-discovery", "group": "pm", "emoji": "💡", "title": "Discovery & Research", "blurb": "User research, synthesis, brainstorming, competitive briefs, stress-testing ideas."},
-    {"id": "pm-delivery", "group": "pm", "emoji": "📝", "title": "Specs, Stories & Delivery", "blurb": "PRDs, specs, tickets, sprint planning, roadmaps, triage and design handoff."},
-    {"id": "pm-comms", "group": "pm", "emoji": "📣", "title": "Stakeholders, Metrics & Writing", "blurb": "Status updates, metrics reviews, UX copy and human-sounding writing."}
+    {
+      "id": "strategy",
+      "group": "qa",
+      "emoji": "🗺️",
+      "title": "Strategy, Planning & Metrics",
+      "blurb": "Decide what to test, plan it, report on it."
+    },
+    {
+      "id": "functional",
+      "group": "qa",
+      "emoji": "✅",
+      "title": "Functional & Acceptance",
+      "blurb": "Black-box, exploratory, regression and release-gate testing."
+    },
+    {
+      "id": "code-level",
+      "group": "qa",
+      "emoji": "🔬",
+      "title": "Code-Level & White-Box",
+      "blurb": "Unit, integration, property, fuzz, mutation and TDD."
+    },
+    {
+      "id": "automation",
+      "group": "qa",
+      "emoji": "🤖",
+      "title": "Automation & CI",
+      "blurb": "Frameworks, environments, flaky tests, coverage and pipelines."
+    },
+    {
+      "id": "web",
+      "group": "qa",
+      "emoji": "🖥️",
+      "title": "Web, UI & UX Testing",
+      "blurb": "Browsers, E2E, visual, accessibility, i18n, SEO and PWAs."
+    },
+    {
+      "id": "api-backend",
+      "group": "qa",
+      "emoji": "🔌",
+      "title": "API, Backend & Messaging",
+      "blurb": "REST, GraphQL, real-time, contracts, events and microservices."
+    },
+    {
+      "id": "data",
+      "group": "qa",
+      "emoji": "🗄️",
+      "title": "Data & Databases",
+      "blurb": "Databases, ETL, migrations and test data."
+    },
+    {
+      "id": "non-functional",
+      "group": "qa",
+      "emoji": "⚡",
+      "title": "Performance & Reliability",
+      "blurb": "Load, scalability, chaos, recovery and compatibility."
+    },
+    {
+      "id": "operations",
+      "group": "qa",
+      "emoji": "📡",
+      "title": "Operations & Production",
+      "blurb": "Observability, infrastructure and shift-right monitoring."
+    },
+    {
+      "id": "security",
+      "group": "qa",
+      "emoji": "🛡️",
+      "title": "Security & Privacy",
+      "blurb": "Defensive security testing, auth, supply chain and IaC."
+    },
+    {
+      "id": "compliance",
+      "group": "qa",
+      "emoji": "📋",
+      "title": "Compliance",
+      "blurb": "GDPR, HIPAA, PCI, SOC 2, audit evidence."
+    },
+    {
+      "id": "ai",
+      "group": "qa",
+      "emoji": "🧠",
+      "title": "AI, ML & LLM Testing",
+      "blurb": "Models, LLM apps, RAG, agents, chatbots, MCP and prompt injection."
+    },
+    {
+      "id": "platform",
+      "group": "qa",
+      "emoji": "📱",
+      "title": "Platforms",
+      "blurb": "Mobile, desktop, CLI, IoT, games, blockchain and serverless."
+    },
+    {
+      "id": "domain",
+      "group": "qa",
+      "emoji": "💳",
+      "title": "Domain-Specific",
+      "blurb": "Payments, email, analytics and experimentation."
+    },
+    {
+      "id": "web-quality",
+      "group": "web",
+      "emoji": "🚀",
+      "title": "Web Quality & Core Web Vitals",
+      "blurb": "Lighthouse-style audits: performance, accessibility, best practices."
+    },
+    {
+      "id": "seo-geo",
+      "group": "web",
+      "emoji": "🔎",
+      "title": "SEO & AI Search Visibility",
+      "blurb": "Keywords, competitors, local SEO, and how ChatGPT/Gemini cite you (GEO/AEO)."
+    },
+    {
+      "id": "pm-discovery",
+      "group": "pm",
+      "emoji": "💡",
+      "title": "Discovery & Research",
+      "blurb": "User research, synthesis, brainstorming, competitive briefs, stress-testing ideas."
+    },
+    {
+      "id": "pm-delivery",
+      "group": "pm",
+      "emoji": "📝",
+      "title": "Specs, Stories & Delivery",
+      "blurb": "PRDs, specs, tickets, sprint planning, roadmaps, triage and design handoff."
+    },
+    {
+      "id": "pm-comms",
+      "group": "pm",
+      "emoji": "📣",
+      "title": "Stakeholders, Metrics & Writing",
+      "blurb": "Status updates, metrics reviews, UX copy and human-sounding writing."
+    },
+    {
+      "id": "pm-strategy",
+      "group": "pm",
+      "emoji": "🎯",
+      "title": "Strategy, Vision & Market",
+      "blurb": "Product vision and strategy, market sizing, SWOT, battlecards, red-teaming a plan."
+    },
+    {
+      "id": "pm-analytics",
+      "group": "pm",
+      "emoji": "📊",
+      "title": "Analytics & Experiments",
+      "blurb": "North-star metrics, dashboards, A/B tests, cohorts and SQL for product questions."
+    }
   ],
   "assign": {
     "cloudflare-security-audit": "security",
@@ -69,6 +206,60 @@
     "metrics-review": "pm-comms",
     "ux-copy": "pm-comms",
     "humanizer": "pm-comms",
-    "handoff": "pm-comms"
+    "handoff": "pm-comms",
+    "playwright-cli": "automation",
+    "playwright-skill": "automation",
+    "playwright-best-practices": "automation",
+    "playwright-automation": "automation",
+    "cypress-automation": "automation",
+    "selector-drift-recovery": "automation",
+    "test-migration": "automation",
+    "test-suite-curation": "automation",
+    "ai-test-generation": "ai",
+    "agentic-browser-testing": "ai",
+    "ai-bug-triage": "ai",
+    "test-driven-development": "code-level",
+    "systematic-debugging": "code-level",
+    "verification-before-completion": "functional",
+    "qa-project-context": "strategy",
+    "risk-based-testing": "strategy",
+    "shift-left-testing": "strategy",
+    "test-case-management": "strategy",
+    "quality-postmortem": "strategy",
+    "bug-reproduction": "functional",
+    "service-virtualization": "api-backend",
+    "create-prd": "pm-delivery",
+    "user-stories": "pm-delivery",
+    "job-stories": "pm-delivery",
+    "test-scenarios": "functional",
+    "intended-vs-implemented": "functional",
+    "dummy-dataset": "data",
+    "pre-mortem": "pm-delivery",
+    "prioritization-frameworks": "pm-delivery",
+    "prioritize-features": "pm-delivery",
+    "release-notes": "pm-comms",
+    "retro": "pm-comms",
+    "sprint-plan": "pm-delivery",
+    "outcome-roadmap": "pm-delivery",
+    "summarize-meeting": "pm-comms",
+    "stakeholder-map": "pm-comms",
+    "north-star-metric": "pm-analytics",
+    "metrics-dashboard": "pm-analytics",
+    "ab-test-analysis": "pm-analytics",
+    "cohort-analysis": "pm-analytics",
+    "sql-queries": "pm-analytics",
+    "user-personas": "pm-discovery",
+    "interview-script": "pm-discovery",
+    "summarize-interview": "pm-discovery",
+    "analyze-feature-requests": "pm-discovery",
+    "opportunity-solution-tree": "pm-discovery",
+    "identify-assumptions-existing": "pm-discovery",
+    "brainstorm-experiments-existing": "pm-discovery",
+    "strategy-red-team": "pm-strategy",
+    "product-vision": "pm-strategy",
+    "product-strategy": "pm-strategy",
+    "market-sizing": "pm-strategy",
+    "swot-analysis": "pm-strategy",
+    "competitive-battlecard": "pm-strategy"
   }
 }

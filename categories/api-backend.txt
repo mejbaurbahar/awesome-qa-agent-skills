@@ -3,4 +3,5 @@ contract-testing
 event-driven-messaging-testing
 graphql-testing
 microservices-testing
+service-virtualization
 websocket-realtime-testing

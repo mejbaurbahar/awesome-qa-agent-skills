@@ -1,7 +1,15 @@
+create-prd
 design-handoff
+job-stories
+outcome-roadmap
+pre-mortem
+prioritization-frameworks
+prioritize-features
 roadmap-update
+sprint-plan
 sprint-planning
 to-spec
 to-tickets
 triage
+user-stories
 write-spec

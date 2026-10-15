@@ -32,7 +32,7 @@ def description(fm):
     m = re.search(r"(?m)^description:\s*(.*)$", fm)
     v = m.group(1).strip() if m else ""
     if v in (">", "|", ">-", "|-"):
-        block = re.search(r"(?ms)^description:\s*[>|]-?\n((?:[ \t]+.*\n?)+)", fm)
+        block = re.search(r"(?m)^description:[ \t]*[>|]-?[ \t]*\n((?:[ \t]+.*\n?)+)", fm)
         v = " ".join(l.strip() for l in block.group(1).splitlines())
     v = v.strip("\"'").replace("|", "\\|")
     v = re.sub(r"^Use (this skill )?when\s+", "", v, flags=re.I)
@@ -56,6 +56,27 @@ def write_lists(folder, mapping):
         (d / f"{key}.txt").write_text("\n".join(sorted(names)) + "\n")
 
 
+def write_notices(lock, sources):
+    out = ["# Third-party notices", "",
+           "This repository vendors Agent Skills from the upstream projects below, copied from the pinned "
+           "commit. Each keeps its original license; full texts are in [`licenses/`](licenses/). "
+           "Every change made to an upstream file is listed here.", "",
+           "| Source | License | Commit | Skills |", "|---|---|---|---:|"]
+    for sid, e in lock.items():
+        repo = e["repo"].replace("https://github.com/", "")
+        out.append(f"| [{repo}]({e['repo']}) | {e['license']} | `{e['commit'][:10]}` | {len(e['skills'])} |")
+    out += ["", "## Changes to upstream files", ""]
+    changed = [(sid, n, c) for sid, e in lock.items() for n, c in e.get("changes", {}).items()]
+    out += [f"- `{n}` ({sid}): {'; '.join(c)}." for sid, n, c in changed] or ["None."]
+    out += ["", "## Not vendored", ""]
+    for s in sources:
+        if s["mode"] == "upstream":
+            out.append(f"- [{s['repo'].replace('https://github.com/', '')}]({s['repo']}) ({s['license']}) "
+                       "is fetched from upstream by `install.sh --with-upstream` and is not redistributed here.")
+    out += ["", "For Apache-2.0 sources, the upstream NOTICE file is included in `licenses/` where one exists."]
+    (ROOT / "THIRD_PARTY_NOTICES.md").write_text("\n".join(out) + "\n", encoding="utf-8")
+
+
 def main():
     lock = json.loads((ROOT / "sources.lock.json").read_text())
     sources = json.loads((ROOT / "sources.json").read_text())["sources"]
@@ -71,7 +92,8 @@ def main():
     by_cat, errors = {c: [] for c in cats}, []
     for n in sorted(skill_src):
         fm = frontmatter(n)
-        cat = own_category(fm) or cfg["assign"].get(n)
+        own = own_category(fm)
+        cat = cfg["assign"].get(n) or (own if own in cats else None)
         if not cat:
             errors.append(f"{n}: no category (add it to categories.json 'assign')")
         elif cat not in cats:
@@ -118,9 +140,41 @@ def main():
     readme = ROOT / "README.md"
     text = readme.read_text(encoding="utf-8")
     text = re.sub(re.escape(START) + r".*?" + re.escape(END), lambda _: "\n".join(out), text, flags=re.S)
+    used_cats = sum(1 for v in by_cat.values() if v)
+    vendored = len(lock)
     text = re.sub(r"<!-- count -->\d+<!-- /count -->", f"<!-- count -->{total}<!-- /count -->", text)
-    text = re.sub(r"skills-\d+-", f"skills-{total}-", text)
+    text = re.sub(r"<!-- cats -->\d+<!-- /cats -->", f"<!-- cats -->{used_cats}<!-- /cats -->", text)
+    text = re.sub(r"badge/skills-\d+-", f"badge/skills-{total}-", text)
+    text = re.sub(r"badge/categories-\d+-", f"badge/categories-{used_cats}-", text)
+    text = re.sub(r"badge/upstream_sources-\d+-", f"badge/upstream_sources-{vendored}-", text)
+
+    credits = ["| Project | License | Skills here |", "|---|---|---:|"]
+    for sid, e in sorted(lock.items(), key=lambda kv: -len(kv[1]["skills"])):
+        repo = e["repo"].replace("https://github.com/", "")
+        credits.append(f"| [{repo}]({e['repo']}) | {e['license']} | {len(e['skills'])} |")
+    for s in (s for s in sources if s["mode"] == "upstream"):
+        credits.append(f"| [{s['repo'].replace('https://github.com/', '')}]({s['repo']}) | {s['license']} | via `--with-upstream` |")
+    text = re.sub(r"<!-- credits:start -->.*?<!-- credits:end -->",
+                  lambda _: "<!-- credits:start -->\n" + "\n".join(credits) + "\n<!-- credits:end -->", text, flags=re.S)
+
+    # Every skill named in the hand-written sections must exist.
+    named = set()
+    paths = re.search(r"<!-- paths:start -->(.*?)<!-- paths:end -->", text, re.S)
+    if paths:
+        named |= set(re.findall(r"`([A-Za-z0-9_.-]+)`", paths.group(1)))
+    for line in text.splitlines():
+        if line.startswith('| *"'):
+            named |= set(re.findall(r"`([A-Za-z0-9_.-]+)`", line))
+    for sub in re.findall(r"<sub>(.*?)</sub>", text):
+        named |= {n.strip() for n in sub.split("·")}
+    missing = sorted(n for n in named if n not in skill_src)
+    if missing:
+        sys.exit("README names skills that do not exist: " + ", ".join(missing))
     readme.write_text(text, encoding="utf-8")
+    write_notices(lock, sources)
+    for manifest in (ROOT / ".claude-plugin").glob("*.json"):
+        m_text = manifest.read_text(encoding="utf-8")
+        manifest.write_text(re.sub(r"\b\d+ Agent Skills", f"{total} Agent Skills", m_text), encoding="utf-8")
     used = sum(1 for v in by_cat.values() if v)
     print(f"catalog: {total} skills in {used} categories; packs " +
           ", ".join(f"{p}={len(v)}" for p, v in sorted(packs.items())))

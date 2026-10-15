@@ -1,7 +1,15 @@
 cicd-testing
 code-coverage-analysis
+cypress-automation
 flaky-test-management
+playwright-automation
+playwright-best-practices
+playwright-cli
+playwright-skill
 qa-test-harness
+selector-drift-recovery
 test-automation
 test-environment-management
+test-migration
+test-suite-curation
 webapp-testing

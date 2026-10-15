@@ -1,5 +1,9 @@
 handoff
 humanizer
 metrics-review
+release-notes
+retro
+stakeholder-map
 stakeholder-update
+summarize-meeting
 ux-copy

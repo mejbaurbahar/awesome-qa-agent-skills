@@ -3,10 +3,15 @@ bug-reporting
 qa-code-intelligence
 qa-engineering
 qa-fundamentals
+qa-project-context
 qa-skill-router
+quality-postmortem
 release-readiness-testing
 requirements-testing-review
+risk-based-testing
+shift-left-testing
 test-architect
+test-case-management
 test-design-techniques
 test-metrics-reporting
 test-planning-documentation
