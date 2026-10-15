@@ -55,6 +55,11 @@ else
   else run mkdir -p "$HOME_DIR"; run git clone -q --depth 1 "$REPO_URL" "$REPO"; fi
 fi
 
+if [ "$DRY" = 1 ] && [ ! -f "$REPO/sources.lock.json" ]; then
+  say "  [dry-run] would then install packs: ${CATS:-$PACKS} into:$( [ "$DO_CLAUDE" = 1 ] && printf ' %s' "$CLAUDE_DIR")$( [ "$DO_AGY" = 1 ] && printf ' %s' "$AGY_DIR")"
+  exit 0
+fi
+
 if [ "$UNINSTALL" = 1 ]; then
   [ -f "$MANIFEST" ] || { say "nothing to uninstall"; exit 0; }
   n=0
