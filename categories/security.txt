@@ -1,0 +1,10 @@
+42crunch-api-security-testing
+ai-code-security
+authn-authz-testing
+cloudflare-security-audit
+iac-container-security-testing
+security-hardening
+security-owasp
+security-testing
+supply-chain-dependency-testing
+threat-modeling

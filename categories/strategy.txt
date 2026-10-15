@@ -1,0 +1,15 @@
+autonomous-qa-orchestration
+bug-reporting
+qa-code-intelligence
+qa-engineering
+qa-fundamentals
+qa-skill-router
+release-readiness-testing
+requirements-testing-review
+test-architect
+test-design-techniques
+test-metrics-reporting
+test-planning-documentation
+test-strategist
+testing-strategies
+testing-strategy

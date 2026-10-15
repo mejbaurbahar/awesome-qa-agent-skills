@@ -3,6 +3,8 @@
 #
 #   ./install.sh                      # all packs, Claude Code + Antigravity
 #   ./install.sh --pack qa,pm         # only some packs (qa, pm, web)
+#   ./install.sh --category api-backend,security   # only some categories
+#   ./install.sh --list               # show packs and categories with counts
 #   ./install.sh --claude-only        # or --antigravity-only
 #   ./install.sh --with-upstream      # also fetch the 77-skill PM pack from upstream
 #   ./install.sh --copy               # copy instead of symlink
@@ -18,17 +20,19 @@ MANIFEST="$HOME_DIR/.installed"
 CLAUDE_DIR="${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
 AGY_DIR="${ANTIGRAVITY_SKILLS_DIR:-$HOME/.gemini/config/skills}"
 
-PACKS="qa,pm,web"; DO_CLAUDE=1; DO_AGY=1; MODE=link; UPSTREAM=0; DRY=0; UNINSTALL=0
+PACKS="qa,pm,web"; CATS=""; DO_CLAUDE=1; DO_AGY=1; MODE=link; UPSTREAM=0; DRY=0; UNINSTALL=0; LIST=0
 while [ $# -gt 0 ]; do
   case "$1" in
     --pack|--packs) PACKS="$2"; shift ;;
+    --category|--categories) CATS="$2"; shift ;;
+    --list) LIST=1 ;;
     --claude-only) DO_AGY=0 ;;
     --antigravity-only) DO_CLAUDE=0 ;;
     --copy) MODE=copy ;;
     --with-upstream) UPSTREAM=1 ;;
     --uninstall) UNINSTALL=1 ;;
     --dry-run) DRY=1 ;;
-    -h|--help) sed -n '2,13p' "$0"; exit 0 ;;
+    -h|--help) sed -n '2,15p' "$0"; exit 0 ;;
     *) echo "unknown option: $1" >&2; exit 2 ;;
   esac
   shift
@@ -62,12 +66,27 @@ if [ "$UNINSTALL" = 1 ]; then
   say "removed $n skill entries"; exit 0
 fi
 
-pack_skills() {  # print skill names for the selected packs
-  local p
-  for p in $(printf '%s' "$PACKS" | tr ',' ' '); do
-    [ -f "$REPO/packs/$p.txt" ] || { echo "unknown pack: $p" >&2; exit 2; }
-    cat "$REPO/packs/$p.txt"
-  done
+if [ "$LIST" = 1 ]; then
+  say "Packs (--pack):"
+  for f in "$REPO"/packs/*.txt; do printf '  %-16s %3s skills\n' "$(basename "$f" .txt)" "$(wc -l < "$f" | tr -d ' ')"; done
+  say "Categories (--category):"
+  for f in "$REPO"/categories/*.txt; do printf '  %-16s %3s skills\n' "$(basename "$f" .txt)" "$(wc -l < "$f" | tr -d ' ')"; done
+  exit 0
+fi
+
+# Validate selections here, in the main shell: an exit inside $(pack_skills) would only end a subshell.
+if [ -n "$CATS" ]; then SEL_DIR=categories; SEL="$CATS"; KIND=category; else SEL_DIR=packs; SEL="$PACKS"; KIND=pack; fi
+for p in $(printf '%s' "$SEL" | tr ',' ' '); do
+  [ -f "$REPO/$SEL_DIR/$p.txt" ] || { echo "unknown $KIND: $p (run with --list to see options)" >&2; exit 2; }
+done
+
+pack_skills() {  # print skill names for the selected categories, else packs
+  local p dir=packs sel="$PACKS"
+  if [ -n "$CATS" ]; then dir=categories; sel="$CATS"; fi
+  for p in $(printf '%s' "$sel" | tr ',' ' '); do
+    [ -f "$REPO/$dir/$p.txt" ] || { echo "unknown ${dir%s}: $p (see --list)" >&2; exit 2; }
+    cat "$REPO/$dir/$p.txt"
+  done | sort -u
 }
 
 installed=0; skipped=0

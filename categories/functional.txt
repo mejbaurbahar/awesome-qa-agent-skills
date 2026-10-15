@@ -1,0 +1,9 @@
+acceptance-testing
+bdd-gherkin-testing
+email-notification-testing
+exploratory-testing
+functional-testing
+manual-testing
+regression-testing
+smoke-sanity-testing
+system-testing
