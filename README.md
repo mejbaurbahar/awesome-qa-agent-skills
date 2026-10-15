@@ -4,7 +4,7 @@
 
 ### Turn your AI coding agent into a senior QA engineer and a sharp product partner.
 
-<!-- count -->194<!-- /count --> curated, validated Agent Skills for **software testers, SDETs, QA leads and product managers**, in <!-- cats -->21<!-- /cats --> categories, installed with one command into **Claude Code** and **Antigravity**.
+<!-- count -->194<!-- /count --> curated, validated Agent Skills for <b>software testers, SDETs, QA leads and product managers</b>, in <!-- cats -->21<!-- /cats --> categories, installed with one command into <b>Claude Code</b> and <b>Antigravity</b>.
 
 [![Skills](https://img.shields.io/badge/skills-194-2ea44f?style=flat-square)](#-catalog)
 [![Categories](https://img.shields.io/badge/categories-21-0969da?style=flat-square)](#-catalog)
