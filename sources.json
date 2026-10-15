@@ -1,0 +1,114 @@
+{
+  "_comment": "Every skill in skills/ comes from one of these upstreams. Run `python3 scripts/sync_vendor.py` to refresh. mode=vendor copies the listed skills into skills/; mode=upstream is fetched by install.sh at install time and never committed (license or missing-license reasons).",
+  "sources": [
+    {
+      "id": "software-tester-skills",
+      "repo": "https://github.com/mejbaurbahar/software-tester-skills",
+      "license": "MIT",
+      "pack": "qa",
+      "mode": "vendor",
+      "path": "skills",
+      "skills": "*"
+    },
+    {
+      "id": "cloudflare-security-audit",
+      "repo": "https://github.com/cloudflare/security-audit-skill",
+      "license": "MIT",
+      "pack": "qa",
+      "mode": "vendor",
+      "path": "skills",
+      "skills": ["security-audit"],
+      "rename": {"security-audit": "cloudflare-security-audit"}
+    },
+    {
+      "id": "anthropic-knowledge-work-plugins",
+      "repo": "https://github.com/anthropics/knowledge-work-plugins",
+      "license": "Apache-2.0",
+      "pack": "pm",
+      "mode": "vendor",
+      "path": "",
+      "skills": [
+        "product-management/skills/competitive-brief",
+        "product-management/skills/metrics-review",
+        "product-management/skills/product-brainstorming",
+        "product-management/skills/roadmap-update",
+        "product-management/skills/sprint-planning",
+        "product-management/skills/stakeholder-update",
+        "product-management/skills/synthesize-research",
+        "product-management/skills/write-spec",
+        "engineering/skills/testing-strategy",
+        "design/skills/user-research",
+        "design/skills/research-synthesis",
+        "design/skills/ux-copy",
+        "design/skills/design-handoff",
+        "design/skills/accessibility-review"
+      ]
+    },
+    {
+      "id": "web-quality-skills",
+      "repo": "https://github.com/addyosmani/web-quality-skills",
+      "license": "MIT",
+      "pack": "web",
+      "mode": "vendor",
+      "path": "skills",
+      "skills": ["web-quality-audit", "core-web-vitals", "performance", "accessibility", "seo", "best-practices"]
+    },
+    {
+      "id": "openseo",
+      "repo": "https://github.com/every-app/open-seo",
+      "license": "MIT",
+      "pack": "web",
+      "mode": "vendor",
+      "path": "plugins/openseo/skills",
+      "skills": "*",
+      "note": "Needs the OpenSEO MCP server (https://app.openseo.so/mcp) for live data."
+    },
+    {
+      "id": "mattpocock-skills",
+      "repo": "https://github.com/mattpocock/skills",
+      "license": "MIT",
+      "pack": "pm",
+      "mode": "vendor",
+      "path": "skills",
+      "skills": [
+        "engineering/to-spec",
+        "engineering/to-tickets",
+        "engineering/triage",
+        "engineering/grill-with-docs",
+        "engineering/wayfinder",
+        "productivity/grill-me",
+        "productivity/to-questionnaire",
+        "productivity/handoff"
+      ]
+    },
+    {
+      "id": "humanizer",
+      "repo": "https://github.com/blader/humanizer",
+      "license": "MIT",
+      "pack": "pm",
+      "mode": "vendor",
+      "path": "",
+      "skills": ["."],
+      "rename": {".": "humanizer"}
+    },
+    {
+      "id": "skills-for-antigravity",
+      "repo": "https://github.com/omer-metin/skills-for-antigravity",
+      "license": "Apache-2.0",
+      "pack": "qa",
+      "mode": "vendor",
+      "path": "skills",
+      "skills": ["prompt-injection-defense"]
+    },
+    {
+      "id": "product-manager-skills",
+      "repo": "https://github.com/deanpeters/Product-Manager-Skills",
+      "license": "CC-BY-NC-SA-4.0",
+      "pack": "pm",
+      "mode": "upstream",
+      "path": "skills",
+      "skills": "*",
+      "note": "77 PM skills. Fetched from upstream by install.sh --with-upstream (CC BY-NC-SA: not re-hosted here)."
+    }
+  ]
+}

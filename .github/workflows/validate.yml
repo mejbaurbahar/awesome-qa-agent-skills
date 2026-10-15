@@ -1,0 +1,24 @@
+name: validate
+on: [push, pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+      - name: Validate skills (Claude Code + Antigravity rules)
+        run: python3 scripts/validate.py
+      - name: Catalog is up to date
+        run: |
+          python3 scripts/build_catalog.py
+          git diff --exit-code -- README.md packs/ || (echo "Run python3 scripts/build_catalog.py and commit" && exit 1)
+      - name: Installer smoke test
+        run: |
+          export AQS_HOME=$RUNNER_TEMP/aqs CLAUDE_SKILLS_DIR=$RUNNER_TEMP/claude ANTIGRAVITY_SKILLS_DIR=$RUNNER_TEMP/agy
+          bash install.sh
+          test "$(ls $RUNNER_TEMP/claude | wc -l)" -eq "$(cat packs/*.txt | wc -l)"
+          test "$(ls $RUNNER_TEMP/agy | wc -l)" -eq "$(cat packs/*.txt | wc -l)"
+          bash install.sh --uninstall
+          test -z "$(ls $RUNNER_TEMP/claude)"

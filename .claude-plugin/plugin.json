@@ -1,0 +1,10 @@
+{
+  "name": "awesome-qa-agent-skills",
+  "description": "140 Agent Skills for software testers, QA engineers and product managers: test design, automation, API, security, performance, accessibility, AI/LLM testing, PRDs, user stories, sprint planning, web quality and SEO.",
+  "version": "1.0.0",
+  "author": { "name": "mejbaurbahar", "url": "https://github.com/mejbaurbahar" },
+  "homepage": "https://github.com/mejbaurbahar/awesome-qa-agent-skills",
+  "repository": "https://github.com/mejbaurbahar/awesome-qa-agent-skills",
+  "license": "MIT",
+  "keywords": ["qa", "testing", "software-testing", "test-automation", "product-management", "agent-skills", "antigravity"]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "awesome-qa-agent-skills",
+  "owner": { "name": "mejbaurbahar", "url": "https://github.com/mejbaurbahar" },
+  "metadata": { "description": "QA, testing and product-management Agent Skills for Claude Code and Antigravity." },
+  "plugins": [
+    {
+      "name": "awesome-qa-agent-skills",
+      "source": "./",
+      "description": "140 Agent Skills for software testers, QA engineers and product managers.",
+      "category": "testing"
+    }
+  ]
+}
